@@ -1,0 +1,6 @@
+/Users/barkha/Documents/UCB/Spring 2021/Capstone/spatial_queue-master/projects/bolinas_civic/sp/CMakeFiles/rebuild_cache.dir
+/Users/barkha/Documents/UCB/Spring 2021/Capstone/spatial_queue-master/projects/bolinas_civic/sp/CMakeFiles/test.dir
+/Users/barkha/Documents/UCB/Spring 2021/Capstone/spatial_queue-master/projects/bolinas_civic/sp/CMakeFiles/sptest.dir
+/Users/barkha/Documents/UCB/Spring 2021/Capstone/spatial_queue-master/projects/bolinas_civic/sp/CMakeFiles/lsp.dir
+/Users/barkha/Documents/UCB/Spring 2021/Capstone/spatial_queue-master/projects/bolinas_civic/sp/CMakeFiles/edit_cache.dir
+/Users/barkha/Documents/UCB/Spring 2021/Capstone/spatial_queue-master/projects/bolinas_civic/sp/CMakeFiles/sp.dir

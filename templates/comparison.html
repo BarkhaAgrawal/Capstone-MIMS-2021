@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/comparison.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+</style>
+<body>
+
+
+
+<!--navbar-->
+<nav class="navbar navbar-expand-lg navbar-light">
+    <!--<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F7B411;">    -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100">
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('index')}}">Simulation </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Simulation Comparison<span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Social Vulnerability</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Github</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<!--Container for padding on the entire page-->
+<div class="container-comparison">
+
+    <div class="container-fluid" id="comparison">
+
+
+        <!--row for simulation labels-->
+        <div class="row">
+            <div class="col-sm-6 text-center border-middle" >Simulation 1
+            </div>
+
+            <div class="col-sm-6 text-center">Simulation 2
+            </div>
+        </div>
+
+        <!--row for inputs-->
+    <div class="row">
+        <div class="col-sm-6 d-flex justify-content-center border-middle" style="padding-top: 20px">
+            <form method="post" action="{{ url_for('simulate') }}" style="padding: 30px">
+                <div class="form-group inp-group">
+
+                    <label for="inputDirection">Direction of Fire</label>
+                    <i data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="fa fa-info-circle icon-tooltip" aria-hidden="true"></i>
+                    <div></div>
+                    <div class="btn-group" role="group" aria-label="Basic example" id="inputDirection">
+                        <button type="button" class="btn btn-secondary directions-button" >North</button>
+                        <button type="button" class="btn btn-secondary directions-button ">East</button>
+                        <button type="button" class="btn btn-secondary directions-button">West</button>
+                        <button type="button" class="btn btn-secondary directions-button">South</button>
+                    </div>
+                </div>
+                <div class="form-group inp-group">
+                    <label for="inputNoticeTime">Time of Notice</label>
+                    <i data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="fa fa-info-circle icon-tooltip" aria-hidden="true"></i>
+                    <select class="custom-select" id="inputNoticeTime" >
+                        <option selected>Select</option>
+                        <option value="1">Immediately</option>
+                        <option value="2">One day before</option>
+                        <option value="3">Two days before</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group inp-group">
+                    <label for="inputCars"># of cars/Household</label>
+                    <i data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="fa fa-info-circle icon-tooltip" aria-hidden="true"></i>
+                    <select class="custom-select" id="inputCars">
+                        <option selected>Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+
+                </div>
+                <div class="formgroup inp-group">
+                    <label for="complianceRange">Compliance Rate(%)</label>
+                    <i data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="fa fa-info-circle icon-tooltip" aria-hidden="true"></i>
+                    <div></div>
+                    <input type="range" min="0" max="100" class="custom-range" id="complianceRange">
+                    <p>Value: <span id="range_val"></span></p>
+                </div>
+
+
+
+                <div class="formgroup inp-group">
+                    <div class="custom-control custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-control-input" id="inputSVI" name="incorporateSVI">
+                        <label class="custom-control-label" for="inputSVI">Incorporate SVI</label>
+                        <i data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="fa fa-info-circle icon-tooltip" aria-hidden="true"></i>
+
+                    </div>
+                </div>
+
+                <!--<button type="submit" class="btn btn-primary btn-block" style="margin-top: 50px">Simulate</button>-->
+            </form>
+        </div>
+
+        <div class="col-sm-6 d-flex justify-content-center" style="padding-top: 20px" >
+            <form method="post" action="{{ url_for('simulate') }}" style="padding: 30px">
+                <div class="form-group inp-group">
+
+                    <label for="inputDirection">Direction of Fire</label>
+                    <i data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="fa fa-info-circle icon-tooltip" aria-hidden="true"></i>
+                    <div></div>
+                    <div class="btn-group" role="group" aria-label="Basic example" id="inputDirection">
+                        <button type="button" class="btn btn-secondary directions-button" >North</button>
+                        <button type="button" class="btn btn-secondary directions-button ">East</button>
+                        <button type="button" class="btn btn-secondary directions-button">West</button>
+                        <button type="button" class="btn btn-secondary directions-button">South</button>
+                    </div>
+                </div>
+                <div class="form-group inp-group">
+                    <label for="inputNoticeTime">Time of Notice</label>
+                    <i data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="fa fa-info-circle icon-tooltip" aria-hidden="true"></i>
+                    <select class="custom-select" id="inputNoticeTime" >
+                        <option selected>Select</option>
+                        <option value="1">Immediately</option>
+                        <option value="2">One day before</option>
+                        <option value="3">Two days before</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group inp-group">
+                    <label for="inputCars"># of cars/Household</label>
+                    <i data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="fa fa-info-circle icon-tooltip" aria-hidden="true"></i>
+                    <select class="custom-select" id="inputCars">
+                        <option selected>Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+
+                </div>
+                <div class="formgroup inp-group">
+                    <label for="complianceRange">Compliance Rate(%)</label>
+                    <i data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="fa fa-info-circle icon-tooltip" aria-hidden="true"></i>
+                    <div></div>
+                    <input type="range" min="0" max="100" class="custom-range" id="complianceRange">
+                    <p>Value: <span id="range_val"></span></p>
+                </div>
+
+
+
+                <div class="formgroup inp-group">
+                    <div class="custom-control custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-control-input" id="inputSVI" name="incorporateSVI">
+                        <label class="custom-control-label" for="inputSVI">Incorporate SVI</label>
+                        <i data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="fa fa-info-circle icon-tooltip" aria-hidden="true"></i>
+
+                    </div>
+                </div>
+
+                <!--<button type="submit" class="btn btn-primary btn-block" style="margin-top: 50px">Simulate</button>-->
+            </form>
+        </div>
+    </div>
+
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-sm-3"><button type="submit" class="btn btn-primary btn-block" style="margin-top: 20px">Compare</button></div>
+
+        </div>
+
+    <!--row for simulations-->
+    <div class="row" style="margin-top: 30px">
+        <div class="col-sm-6 d-flex justify-content-center" >
+            <img src="/static/images/default_state.png" >
+        </div>
+
+        <div class="col-sm-6 d-flex justify-content-center">
+            <img src="/static/images/default_state.png" >
+        </div>
+    </div>
+
+        <!--result 1 -->
+        <div class="row" style="margin-top: 30px">
+
+                <div class="col-6 justify-content-center"><img src="/static/images/graph.png"></div>
+                <div class="col-6 justify-content-center"><img src="/static/images/graph.png"></div>
+            </div>
+
+            <div class="row" style="padding: 20px">
+                <div class="col-6 justify-content-center" style="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+                <div class="col-6 justify-content-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+        </div>
+
+
+        <!--result 2 -->
+        <div class="row" style="margin-top: 30px">
+
+            <div class="col-6 justify-content-center"><img src="/static/images/graph.png"></div>
+            <div class="col-6 justify-content-center"><img src="/static/images/graph.png"></div>
+        </div>
+
+        <div class="row" style="padding: 20px">
+            <div class="col-6 justify-content-center" style="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+            <div class="col-6 justify-content-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+        </div>
+
+</div>
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename= 'js/lib/bootstrap.js')}}" ></script>
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
+
+
+</body>
+</html>
