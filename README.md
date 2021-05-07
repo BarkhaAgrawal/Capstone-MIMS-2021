@@ -10,3 +10,6 @@ Modeling evacuation under wildfires.
 * Temporal resolution: 1 second
 * Route computation: priority-queue based Dijkstra algorithm [sp](https://github.com/cb-cities/sp)
 * Compatible with road network retrieved from [OSMnx](https://github.com/gboeing/osmnx)
+
+### Report
+![report](final_paper_wildfire_evacuation_simulator.pdf)
